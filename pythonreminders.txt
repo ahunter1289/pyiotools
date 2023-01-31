@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 29 13:50:07 2023
+
+@author: andrewhunter
+"""
+
+python reminders
+
+clear console: clear
+clear variables: %reset
+
+# Load the config
+if 'configname' in locals() or 'configname' in globals():
+    print('config has already been loaded')
+else:
+    runfile('/Users/andrewhunter/offlinedocs/swdev/pythonscripts/config/spydersysmain.py')
+    print('config has been loaded')
