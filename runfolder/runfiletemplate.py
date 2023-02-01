@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 29 14:04:34 2023
-
-@author: andrewhunter
-"""
 
 # Basic imports
 import os
@@ -26,4 +20,4 @@ sys.path.append(rootdir + "/tools")
 from importtools import *
 
 # Analysis
-results = importcsv(testdatadir + '/csvtestdata/csvtest/csvtest.csv')
+# place code here for data analysis
