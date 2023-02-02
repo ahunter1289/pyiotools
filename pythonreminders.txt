@@ -8,6 +8,20 @@ Created on Sun Jan 29 13:50:07 2023
 
 python reminders
 
+
+import statements
+import os
+import sys
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+import pandas
+import h5py
+import scipy
+import math
+import tkinter as tk
+from tkinter import filedialog
+
 clear console: clear
 clear variables: %reset
 

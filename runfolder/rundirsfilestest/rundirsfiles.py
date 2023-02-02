@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jan 29 14:04:34 2023
+Created on Wed Feb  1 21:23:33 2023
 
 @author: andrewhunter
 """
 
-# Basic imports
+#imports
+
 import os
 import sys
 import matplotlib.pyplot as plt
@@ -27,8 +28,11 @@ sys.path.append(rootdir + "/tools")
 
 # Tools import
 from importtools import *
+from dirsfilestools import *
 
 # Analysis
-resultstest1 = importcsv(testdatadir + '/csvtestdata/csvtest/csvtest.csv')
-resultstest2 = importcsv()
-resultstest3 = importcsv('test','test')
+# place code here for data analysis
+
+dirsfiles1 = dirsfiles('/Users/andrewhunter/offlinedocs/swdev/pyiotools/runfolder')
+dirsfiles2 = dirsfiles()
+dirsfiles3 = dirsfiles('test','test')

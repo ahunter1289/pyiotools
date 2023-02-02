@@ -12,16 +12,33 @@ import csv
 import pandas
 import h5py
 import scipy
+import math
+import tkinter as tk
+from tkinter import filedialog
 
-def importcsv(filepath):
+def importcsv(*filepath):
     
-    file = open(filepath)
+    if len(filepath)==0:
+
+        root = tk.Tk()
+        root.withdraw()
+
+        filepath = filedialog.askopenfilename()
+        
+    elif len(filepath)==1:
+        filepath = filepath[0]
+        
+    else:
+        raise Exception('Too many arguments provided to importcsv')
+        
+    
+    file=open(filepath)
     reader = csv.reader(file)
-    listmat = []
+    csvdata = []
     for row in reader:
-        listmat.append(row)
+        csvdata.append(row)
     file.close()
-    return listmat
+    return csvdata
 
 def plotimage(filepath):
     

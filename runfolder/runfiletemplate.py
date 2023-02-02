@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# Basic imports
-import os
-import sys
-import matplotlib.pyplot as plt
-import numpy as np
-import csv
-import pandas
-import h5py
-import scipy
+# Imports
+
 
 # Path config
 rootdir = '/Users/andrewhunter/offlinedocs/swdev/pyiotools'
@@ -18,6 +11,7 @@ sys.path.append(rootdir + "/tools")
 
 # Tools import
 from importtools import *
+from dirsfilestools import *
 
 # Analysis
 # place code here for data analysis
