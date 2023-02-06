@@ -21,13 +21,8 @@ import scipy
 import math
 import tkinter as tk
 from tkinter import filedialog
+from PIL import Image
 
 clear console: clear
-clear variables: %reset
-
-# Load the config
-if 'configname' in locals() or 'configname' in globals():
-    print('config has already been loaded')
-else:
-    runfile('/Users/andrewhunter/offlinedocs/swdev/pythonscripts/config/spydersysmain.py')
-    print('config has been loaded')
+clear variables: reset
+Close all marplotlib libraries: plt.close('all')
