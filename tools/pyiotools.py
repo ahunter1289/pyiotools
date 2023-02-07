@@ -41,13 +41,45 @@ def importcsv(*filepath):
     file.close()
     return csvdata
 
-def plotimage(filepath):
+def plotimage(*filepath):
+    
+    if len(filepath)==0:
+
+        root = tk.Tk()
+        root.withdraw()
+
+        filepath = filedialog.askopenfilename()
+        
+    elif len(filepath)==1:
+        filepath = filepath[0]
+        
+    else:
+        raise Exception('Too many arguments provided to plotcsv')
     
     image = plt.imread(filepath)
     plt.figure()
     plt.imshow(image)
     
     return image
+
+def dirsfiles(*dirpath):
+    
+    if len(dirpath)==0:
+
+        root = tk.Tk()
+        root.withdraw()
+
+        dirpath = filedialog.askdirectory()
+        
+    elif len(dirpath)==1:
+        dirpath = dirpath[0]
+        
+    else:
+        raise Exception('Too many arguments provided to dirsfiles')
+        
+    
+    dirsfileslist=os.listdir(dirpath)
+    return dirsfileslist
 
 class FarFieldGaussImage(object):
     def __init__(self,imgfile):

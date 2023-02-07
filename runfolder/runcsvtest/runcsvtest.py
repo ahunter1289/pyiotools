@@ -26,7 +26,7 @@ sys.path.append(rootdir + "/config")
 sys.path.append(rootdir + "/tools")
 
 # Tools import
-from importtools import *
+from pyiotools import *
 
 # Analysis
 resultstest1 = importcsv(testdatadir + '/csvtestdata/csvtest/csvtest.csv')
