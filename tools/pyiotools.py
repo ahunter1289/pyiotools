@@ -62,7 +62,7 @@ def plotimage(*filepath):
     
     return image
 
-def dirsfiles(*dirpath):
+def scantree(*dirpath):
     
     if len(dirpath)==0:
 
@@ -77,9 +77,23 @@ def dirsfiles(*dirpath):
     else:
         raise Exception('Too many arguments provided to dirsfiles')
         
-    
-    dirsfileslist=os.listdir(dirpath)
-    return dirsfileslist
+    fileslist=[]
+    dirslist=[]
+    dirslist.append(dirpath)
+    symlinklist=[]
+    def scanRecurse(dirpath):
+        for entry in os.scandir(dirpath):
+            if entry.is_file():
+                yield os.path.join(dirpath, entry.name)
+            elif entry.is_symlink():
+                symlinklist.append([os.path.join(dirpath,entry.name)])
+            else:
+                dirslist.append(os.path.join(dirpath,entry.name))
+                yield from scanRecurse(entry.path)
+                          
+    for i in scanRecurse(dirpath):
+        fileslist.append(i)
+    return [dirslist,fileslist,symlinklist]
 
 class FarFieldGaussImage(object):
     def __init__(self,imgfile):

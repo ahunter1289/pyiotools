@@ -32,6 +32,9 @@ from pyiotools import *
 # Analysis
 # place code here for data analysis
 
-dirsfiles1 = dirsfiles('/Users/andrewhunter/offlinedocs/swdev/pyiotools/runfolder')
-dirsfiles2 = dirsfiles()
-dirsfiles3 = dirsfiles('test','test')
+#dirsfiles = scantree('/Users/andrewhunter/offlinedocs/swdev/pyiotools/runfolder')
+
+dirsfiles2 = scantree()
+#dirsfiles3 = scantree('test','test')
+
+
