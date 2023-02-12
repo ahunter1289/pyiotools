@@ -35,8 +35,8 @@ from pyiotools import *
 #dirsfiles = scantree('/Users/andrewhunter/offlinedocs/swdev/pyiotools/runfolder')
 
 # test symlinks
-dirsfiles = scantree('/Users/andrewhunter/offlinedocs/swdev/pyiotoolstestdata',recursiv=0)
-#dirsfiles2 = scantree()
+#dirsfiles = scantree('/Users/andrewhunter/offlinedocs/swdev/pyiotoolstestdata',recursive=0)
+dirsfiles2 = scantree('test','test',recursive=0)
 #dirsfiles3 = scantree('test','test')
 
 

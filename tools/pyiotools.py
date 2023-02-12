@@ -62,7 +62,7 @@ def plotimage(*filepath):
         filepath = filepath[0]
         
     else:
-        raise Exception('Too many arguments provided to plotcsv')
+        raise Exception('Too many arguments provided to plotimage')
     
     image = plt.imread(filepath)
     plt.figure()
@@ -71,9 +71,12 @@ def plotimage(*filepath):
     return image
 
 def scantree(*dirpath,**kwargs):
-    ''' Develop a list of dirs, files, and symlinks
+    ''' 
+    Develop a list of dirs, files, and symlinks
     
-    If no recursive argument is passed it will recursively return
+    If no recursive argument is passed then it will return results from
+    subdirectories
+    
     recursive=0 will not return results from subdirectories
     recursive=1 will return results from subdirectories
     
@@ -91,7 +94,7 @@ def scantree(*dirpath,**kwargs):
         dirpath = dirpath[0]
         
     else:
-        raise Exception('Too many arguments provided to dirsfiles')
+        raise Exception('Too many arguments provided to scantree')
      
     if len(kwargs)==0 or ('recursive' in kwargs.keys() and kwargs['recursive']==1):
         rec=1
