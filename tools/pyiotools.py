@@ -19,6 +19,10 @@ from PIL import Image
 
 def importcsv(*filepath):
     
+    '''
+    Import csv file and return as a list
+    '''
+    
     if len(filepath)==0:
 
         root = tk.Tk()
@@ -42,6 +46,10 @@ def importcsv(*filepath):
     return csvdata
 
 def plotimage(*filepath):
+    '''
+    Import an image on plot
+    '''
+    
     
     if len(filepath)==0:
 
@@ -62,7 +70,15 @@ def plotimage(*filepath):
     
     return image
 
-def scantree(*dirpath):
+def scantree(*dirpath,**kwargs):
+    ''' Develop a list of dirs, files, and symlinks
+    
+    If no recursive argument is passed it will recursively return
+    recursive=0 will not return results from subdirectories
+    recursive=1 will return results from subdirectories
+    
+    Returns a list of list of string paths [directories, files, symlinks]
+    '''
     
     if len(dirpath)==0:
 
@@ -76,26 +92,45 @@ def scantree(*dirpath):
         
     else:
         raise Exception('Too many arguments provided to dirsfiles')
-        
+     
+    if len(kwargs)==0 or ('recursive' in kwargs.keys() and kwargs['recursive']==1):
+        rec=1
+        print('Running scantree recursively')
+    elif 'recursive' in kwargs.keys() and kwargs['recursive']==0:
+        rec=0
+        print('Running scantree non-recursively')
+    else:
+        raise Exception('Incorrect arguments passed to scantree')  
+     
     fileslist=[]
     dirslist=[]
     dirslist.append(dirpath)
     symlinklist=[]
-    def scanRecurse(dirpath):
+    def scanRecurse(dirpath,rec):
+        
         for entry in os.scandir(dirpath):
             if entry.is_file():
                 yield os.path.join(dirpath, entry.name)
             elif entry.is_symlink():
-                symlinklist.append([os.path.join(dirpath,entry.name)])
+                symlinklist.append(os.path.join(dirpath,entry.name))
             else:
                 dirslist.append(os.path.join(dirpath,entry.name))
-                yield from scanRecurse(entry.path)
+
+                if rec:
+                    yield from scanRecurse(entry.path,rec)          
                           
-    for i in scanRecurse(dirpath):
+    for i in scanRecurse(dirpath,rec):
         fileslist.append(i)
     return [dirslist,fileslist,symlinklist]
 
 class FarFieldGaussImage(object):
+    '''
+    Far Field Gaussian beam image
+    
+    Object provides methods such as calculating centroid. Methods include:
+        centroid1: a weighted average centroid of entire image
+    '''
+    
     def __init__(self,imgfile):
         
         img=Image.open(imgfile)
