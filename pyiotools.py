@@ -17,6 +17,8 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import Image
 
+print('Importing pyiotools module')
+
 def importcsv(*filepath):
     
     '''
@@ -49,7 +51,6 @@ def plotimage(*filepath):
     '''
     Import an image on plot
     '''
-    
     
     if len(filepath)==0:
 
