@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
-# plt.close('all')
-# %reset
-# clear
+# pyiotools
+# Author: Andy Hunter
 
 import os
 import sys
@@ -16,8 +13,6 @@ import math
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image
-
-print('Importing pyiotools module')
 
 def importcsv(*filepath):
     

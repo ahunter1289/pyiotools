@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-
-print('Importing importstmts module')
+# Import statements
+# Author: Andy Hunter
 
 import os
 import sys
@@ -14,3 +13,4 @@ import math
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image
+from IPython import get_ipython
