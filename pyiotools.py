@@ -21,7 +21,7 @@ def files_w_string(*dirpath,search_strings,**kwargs):
     # files that contain the strings in searchstrings in the file name
     # add an option recursive argument
 
-def get_row_data(data_row_header,head_search_val,**kwargs)
+def get_row_data(data_row_header,head_search_val,**kwargs):
 
     # Pass the function a matrix nxm list where the first column is the
     # row header and the remaining cols are data. Then search the header
@@ -30,7 +30,7 @@ def get_row_data(data_row_header,head_search_val,**kwargs)
     # argument of return_cols which sets the number of columns you want to
     # return. If you dont pass this argument it returns all data columns
     
-def get_col_data(data_col_header,head_search_val,**kwargs)
+def get_col_data(data_col_header,head_search_val,**kwargs):
 
     # Pass the function a matrix nxm list where the first row is the
     # column header and the remaining rows are data. Then search the header
