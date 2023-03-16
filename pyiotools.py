@@ -14,8 +14,32 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import Image
 
-def importcsv(*filepath):
+def files_w_string(*dirpath,search_strings,**kwargs):
+
+    # In this function we want to pass dirpath which is either a single 
+    # directory or a list of directories. Then search the directories for the
+    # files that contain the strings in searchstrings in the file name
+    # add an option recursive argument
+
+def get_row_data(data_row_header,head_search_val,**kwargs)
+
+    # Pass the function a matrix nxm list where the first column is the
+    # row header and the remaining cols are data. Then search the header
+    # column for the for the head_search_val and where there is a match, return
+    # the data in the remaining columns as a list. THere is optional 
+    # argument of return_cols which sets the number of columns you want to
+    # return. If you dont pass this argument it returns all data columns
     
+def get_col_data(data_col_header,head_search_val,**kwargs)
+
+    # Pass the function a matrix nxm list where the first row is the
+    # column header and the remaining rows are data. Then search the header
+    # row for the for the head_search_val and where there is a match, return
+    # the data in the remaining rows as a list. THere is optional 
+    # argument of return_rows which sets the number of rows you want to
+    # return. If you dont pass this argument it returns all data rows
+
+def import_csv(*filepath):
     '''
     Import csv file and return as a list
     '''
@@ -42,7 +66,7 @@ def importcsv(*filepath):
     file.close()
     return csvdata
 
-def plotimage(*filepath):
+def plot_image(*filepath):
     '''
     Import an image on plot
     '''
@@ -66,7 +90,7 @@ def plotimage(*filepath):
     
     return image
 
-def scantree(*dirpath,**kwargs):
+def scan_tree(*dirpath,**kwargs):
     ''' 
     Develop a list of dirs, files, and symlinks
     
@@ -105,7 +129,7 @@ def scantree(*dirpath,**kwargs):
     dirslist=[]
     dirslist.append(dirpath)
     symlinklist=[]
-    def scanRecurse(dirpath,rec):
+    def scan_recurse(dirpath,rec):
         
         for entry in os.scandir(dirpath):
             if entry.is_file():
@@ -116,9 +140,9 @@ def scantree(*dirpath,**kwargs):
                 dirslist.append(os.path.join(dirpath,entry.name))
 
                 if rec:
-                    yield from scanRecurse(entry.path,rec)          
+                    yield from scan_recurse(entry.path,rec)          
                           
-    for i in scanRecurse(dirpath,rec):
+    for i in scan_recurse(dirpath,rec):
         fileslist.append(i)
     return [dirslist,fileslist,symlinklist]
 
