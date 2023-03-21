@@ -15,29 +15,72 @@ from tkinter import filedialog
 from PIL import Image
 
 def files_w_string(*dirpath,search_strings,**kwargs):
-
+    print('running files w string')
     # In this function we want to pass dirpath which is either a single 
     # directory or a list of directories. Then search the directories for the
     # files that contain the strings in searchstrings in the file name
     # add an option recursive argument
 
-def get_row_data(data_row_header,head_search_val,**kwargs):
-
+def data_by_row_name(data_row_header,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first column is the
     # row header and the remaining cols are data. Then search the header
     # column for the for the head_search_val and where there is a match, return
     # the data in the remaining columns as a list. THere is optional 
     # argument of return_cols which sets the number of columns you want to
     # return. If you dont pass this argument it returns all data columns
+    # notes: matrix must be square or rectangular
     
-def get_col_data(data_col_header,head_search_val,**kwargs):
-
+    if len(kwargs)==0:
+        return_cols=len(data_row_header[0])
+    elif 'return_cols' in kwargs.keys()and type(kwargs['return_cols'])==int and kwargs['return_cols']<=len(data_row_header[0])-1 and kwargs['return_cols']>0:
+        return_cols = kwargs['return_cols']
+    else:
+        raise Exception('Argument must be integer less than equal to the number of columns minus 1') 
+    
+    head_results = []
+    
+    for i in range(len(head_search_val)):
+        found=0
+        for k in range(len(data_row_header)):
+            if head_search_val[i]==data_row_header[k][0]:
+                head_results.append(data_row_header[k][1:return_cols+1])
+                found=1
+            if k==len(data_row_header)-1 and found==0:
+                raise Exception('Could not find: ' + head_search_val[i])
+                
+                
+    return head_results
+    
+def data_by_col_name(data_col_header,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first row is the
     # column header and the remaining rows are data. Then search the header
     # row for the for the head_search_val and where there is a match, return
     # the data in the remaining rows as a list. THere is optional 
     # argument of return_rows which sets the number of rows you want to
     # return. If you dont pass this argument it returns all data rows
+    
+    if len(kwargs)==0:
+        return_rows=len(data_col_header)
+    elif 'return_rows' in kwargs.keys()and type(kwargs['return_rows'])==int and kwargs['return_rows']<=len(data_col_header)-1 and kwargs['return_rows']>0:
+        return_rows = kwargs['return_rows']
+    else:
+        raise Exception('Argument must be integer less than equal to the number of rows minus 1') 
+    
+    head_results = []
+    
+    for i in range(len(head_search_val)):
+        val_list = []
+        found=0
+        for j in range(len(data_col_header[0])):
+            if head_search_val[i]==data_col_header[0][j]:
+                for k in range(return_rows):
+                    val_list.append(data_col_header[k+1][j])
+                head_results.append(val_list)
+                found=1
+            if j==len(data_col_header)-1 and found==0:
+                raise Exception('Could not find: ' + head_search_val[i])   
+                
+    return head_results
 
 def import_csv(*filepath):
     '''
