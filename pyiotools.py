@@ -13,14 +13,9 @@ import math
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image
-
-def files_w_string(*dirpath,search_strings,**kwargs):
-    print('running files w string')
-    # In this function we want to pass dirpath which is either a single 
-    # directory or a list of directories. Then search the directories for the
-    # files that contain the strings in searchstrings in the file name
-    # add an option recursive argument
-
+from IPython import get_ipython
+import re
+    
 def data_by_row_name(data_row_header,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first column is the
     # row header and the remaining cols are data. Then search the header
@@ -32,7 +27,11 @@ def data_by_row_name(data_row_header,head_search_val,**kwargs):
     
     if len(kwargs)==0:
         return_cols=len(data_row_header[0])
-    elif 'return_cols' in kwargs.keys()and type(kwargs['return_cols'])==int and kwargs['return_cols']<=len(data_row_header[0])-1 and kwargs['return_cols']>0:
+    elif ('return_cols' in kwargs.keys() and
+        type(kwargs['return_cols'])==int and
+        kwargs['return_cols']<=len(data_row_header[0])-1 and
+        kwargs['return_cols']>0):
+            
         return_cols = kwargs['return_cols']
     else:
         raise Exception('Argument must be integer less than equal to the number of columns minus 1') 
@@ -61,7 +60,11 @@ def data_by_col_name(data_col_header,head_search_val,**kwargs):
     
     if len(kwargs)==0:
         return_rows=len(data_col_header)
-    elif 'return_rows' in kwargs.keys()and type(kwargs['return_rows'])==int and kwargs['return_rows']<=len(data_col_header)-1 and kwargs['return_rows']>0:
+    elif ('return_rows' in kwargs.keys() and
+        type(kwargs['return_rows'])==int and
+        kwargs['return_rows']<=len(data_col_header)-1 and
+        kwargs['return_rows']>0):
+            
         return_rows = kwargs['return_rows']
     else:
         raise Exception('Argument must be integer less than equal to the number of rows minus 1') 
@@ -157,16 +160,16 @@ def scan_tree(*dirpath,**kwargs):
         dirpath = dirpath[0]
         
     else:
-        raise Exception('Too many arguments provided to scantree')
+        raise Exception('Too many arguments provided to scan_tree')
      
     if len(kwargs)==0 or ('recursive' in kwargs.keys() and kwargs['recursive']==1):
         rec=1
-        print('Running scantree recursively')
+        print('Running scan_tree recursively')
     elif 'recursive' in kwargs.keys() and kwargs['recursive']==0:
         rec=0
-        print('Running scantree non-recursively')
+        print('Running scan_tree non-recursively')
     else:
-        raise Exception('Incorrect arguments passed to scantree')  
+        raise Exception('Incorrect arguments passed to scan_tree')  
      
     fileslist=[]
     dirslist=[]
@@ -245,5 +248,43 @@ class FarFieldGaussImage(object):
         
         return centroid
         
+def files_w_string(search_string,*dirpath,**kwargs):
+    # In this function we want to pass dirpath which is either a single 
+    # directory or a list of directories. Then search the directories for the
+    # files that contain the strings in searchstrings in the file name
+    # add an option recursive argument
+    if len(dirpath)==0:
+
+        root = tk.Tk()
+        root.withdraw()
+
+        filepath = filedialog.askopenfilename()
         
+    elif len(dirpath)==1:
+        dirpath = dirpath[0]
+        
+    else:
+        raise Exception('Too many arguments provided to files_w_string')
+        
+    if len(kwargs)==0 or ('recursive' in kwargs.keys() and kwargs['recursive']==1):
+        [dirslist,fileslist,symlinklist] = scan_tree(dirpath,recursive=1)
+    elif 'recursive' in kwargs.keys() and kwargs['recursive']==0:
+        [dirslist,fileslist,symlinklist] = scan_tree(dirpath,recursive=0)
+    else:
+        raise Exception('Incorrect arguments passed to files_w_string')  
+    
+    files = []
+    
+    for file in fileslist:
+        string_test=1
+        for string in search_string:
+            if string not in file:
+                string_test=string_test*0
+                break
+        if string_test:
+            files.append(file)
+            
+    return files
+            
+    
         
