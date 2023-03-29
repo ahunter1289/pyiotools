@@ -15,6 +15,7 @@ from tkinter import filedialog
 from PIL import Image
 from IPython import get_ipython
 import re
+import datetime
     
 def data_by_row_name(data_row_header,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first column is the
@@ -40,7 +41,9 @@ def data_by_row_name(data_row_header,head_search_val,**kwargs):
     
     for i in range(len(head_search_val)):
         found=0
-        for k in range(len(data_row_header)):
+        for k in range(len(data_row_header)-1):
+            if len(data_row_header[k])<2:
+                continue
             if head_search_val[i]==data_row_header[k][0]:
                 head_results.append(data_row_header[k][1:return_cols+1])
                 found=1
