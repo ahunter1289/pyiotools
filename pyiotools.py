@@ -62,7 +62,7 @@ def data_by_col_name(data_col_header,head_search_val,**kwargs):
     # return. If you dont pass this argument it returns all data rows
     
     if len(kwargs)==0:
-        return_rows=len(data_col_header)
+        return_rows=len(data_col_header)-1
     elif ('return_rows' in kwargs.keys() and
         type(kwargs['return_rows'])==int and
         kwargs['return_rows']<=len(data_col_header)-1 and
