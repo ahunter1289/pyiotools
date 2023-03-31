@@ -6,7 +6,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import csv
-import pandas
+import pandas as pd
 import h5py
 import scipy
 import math
@@ -27,7 +27,7 @@ def data_by_row_name(data_row_header,head_search_val,**kwargs):
     # notes: matrix must be square or rectangular
     
     if len(kwargs)==0:
-        return_cols=len(data_row_header[0])
+        return_cols=len(data_row_header[0])-1
     elif ('return_cols' in kwargs.keys() and
         type(kwargs['return_cols'])==int and
         kwargs['return_cols']<=len(data_row_header[0])-1 and

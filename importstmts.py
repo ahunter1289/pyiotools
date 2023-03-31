@@ -6,7 +6,7 @@ import sys
 import matplotlib.pyplot as plt
 import numpy as np
 import csv
-import pandas
+import pandas as pd
 import h5py
 import scipy
 import math
