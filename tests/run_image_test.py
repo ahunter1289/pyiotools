@@ -21,7 +21,10 @@ from pyiotools.imp import *
 #ut.clear_console()
 
 # Analysis
+img_file = '/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/data/airydisk-rings.jpg'
+tl.plot_image(img_file)
+tl.plot_image('/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/data/file_example_TIFF_1MB.tiff')
+tl.plot_image('/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/data/2Selected-image-of-laser-beam-profile-for-test-example.png')
 
-
-
+print('image test passed')
 

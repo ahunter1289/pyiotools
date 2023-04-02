@@ -23,12 +23,19 @@ from pyiotools.imp import *
 # Analysis
 
 data = tl.import_csv('/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/data/csvtest_3.csv')
-search_val = ['header1']
+search_val = np.array(['header1'])
 first_row = tl.data_by_row_name(data,search_val)
 search_val = ['header5']
 last_row = tl.data_by_row_name(data,search_val,return_cols=2)
 
-if len(last_row[0])==2 and last_row[0][1]=='14' and first_row[0][1]=='2':
+data2 = tl.import_csv('/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/data/csvtest_2.csv')
+search_val2 = np.array(['header4'])
+col = tl.data_by_col_name(data2,search_val2,return_rows=3)
+
+if len(last_row[0])==2 and last_row[0][1]=='14' and first_row[0][1]=='2' and col[0][2]=='12':
     print('head test passed')
 else:
     raise Exception('head test failed')
+
+
+

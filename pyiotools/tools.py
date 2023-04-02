@@ -37,6 +37,10 @@ def data_by_row_name(data,head_search_val,**kwargs):
     else:
         raise Exception('Argument must be integer less than equal to the number of columns minus 1') 
     
+    # Check input types
+    if type(head_search_val)!=list and type(head_search_val)!=type(np.array([])):
+        raise Exception('input types must be list or numpy.ndarray')
+    
     head_results = []
     
     for i in range(len(head_search_val)):
@@ -71,6 +75,10 @@ def data_by_col_name(data,head_search_val,**kwargs):
         return_rows = kwargs['return_rows']
     else:
         raise Exception('Argument must be integer less than equal to the number of rows minus 1') 
+    
+    # Check input types
+    if type(head_search_val)!=list and type(head_search_val)!=type(np.array([])):
+        raise Exception('input types must be list or numpy.ndarray')
     
     head_results = []
     
