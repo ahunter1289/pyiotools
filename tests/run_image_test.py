@@ -1,4 +1,4 @@
-# Runfile template
+# Image test
 # Author: Andy Hunter
 
 # Initial import
@@ -16,9 +16,9 @@ from pyiotools import utils as ut
 from pyiotools.imp import *
 
 # Clean workspace
-plt.close('all')
-ut.clear_var()
-ut.clear_console()
+#plt.close('all')
+#ut.clear_var()
+#ut.clear_console()
 
 # Analysis
 

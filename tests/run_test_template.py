@@ -1,4 +1,4 @@
-# Runfile template
+# Test template
 # Author: Andy Hunter
 
 # Initial import
@@ -6,7 +6,7 @@ import sys
 import os
 
 # Path config
-pyiotools_dir = os.getcwd()
+pyiotools_dir = os.getcwd()[0:-6]
 if pyiotools_dir not in sys.path:
     sys.path.append(pyiotools_dir)
 
@@ -21,7 +21,3 @@ ut.clear_var()
 ut.clear_console()
 
 # Analysis
-
-
-
-

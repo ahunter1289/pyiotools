@@ -17,7 +17,7 @@ from IPython import get_ipython
 import re
 import datetime
     
-def data_by_row_name(data_row_header,head_search_val,**kwargs):
+def data_by_row_name(data,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first column is the
     # row header and the remaining cols are data. Then search the header
     # column for the for the head_search_val and where there is a match, return
@@ -27,10 +27,10 @@ def data_by_row_name(data_row_header,head_search_val,**kwargs):
     # notes: matrix must be square or rectangular
     
     if len(kwargs)==0:
-        return_cols=len(data_row_header[0])-1
+        return_cols=len(data[0])-1
     elif ('return_cols' in kwargs.keys() and
         type(kwargs['return_cols'])==int and
-        kwargs['return_cols']<=len(data_row_header[0])-1 and
+        kwargs['return_cols']<=len(data[0])-1 and
         kwargs['return_cols']>0):
             
         return_cols = kwargs['return_cols']
@@ -41,19 +41,19 @@ def data_by_row_name(data_row_header,head_search_val,**kwargs):
     
     for i in range(len(head_search_val)):
         found=0
-        for k in range(len(data_row_header)-1):
-            if len(data_row_header[k])<2:
+        for k in range(len(data)):
+            if len(data[k])<2:
                 continue
-            if head_search_val[i]==data_row_header[k][0]:
-                head_results.append(data_row_header[k][1:return_cols+1])
+            if head_search_val[i]==data[k][0]:
+                head_results.append(data[k][1:return_cols+1])
                 found=1
-            if k==len(data_row_header)-1 and found==0:
+            if k==len(data)-1 and found==0:
                 raise Exception('Could not find: ' + head_search_val[i])
                 
                 
     return head_results
     
-def data_by_col_name(data_col_header,head_search_val,**kwargs):
+def data_by_col_name(data,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first row is the
     # column header and the remaining rows are data. Then search the header
     # row for the for the head_search_val and where there is a match, return
@@ -62,10 +62,10 @@ def data_by_col_name(data_col_header,head_search_val,**kwargs):
     # return. If you dont pass this argument it returns all data rows
     
     if len(kwargs)==0:
-        return_rows=len(data_col_header)-1
+        return_rows=len(data)-1
     elif ('return_rows' in kwargs.keys() and
         type(kwargs['return_rows'])==int and
-        kwargs['return_rows']<=len(data_col_header)-1 and
+        kwargs['return_rows']<=len(data)-1 and
         kwargs['return_rows']>0):
             
         return_rows = kwargs['return_rows']
@@ -77,13 +77,13 @@ def data_by_col_name(data_col_header,head_search_val,**kwargs):
     for i in range(len(head_search_val)):
         val_list = []
         found=0
-        for j in range(len(data_col_header[0])):
-            if head_search_val[i]==data_col_header[0][j]:
+        for j in range(len(data[0])):
+            if head_search_val[i]==data[0][j]:
                 for k in range(return_rows):
-                    val_list.append(data_col_header[k+1][j])
+                    val_list.append(data[k+1][j])
                 head_results.append(val_list)
                 found=1
-            if j==len(data_col_header)-1 and found==0:
+            if j==len(data)-1 and found==0:
                 raise Exception('Could not find: ' + head_search_val[i])   
                 
     return head_results
