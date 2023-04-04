@@ -17,11 +17,12 @@ from pyiotools.imp import *
 
 # Clean workspace
 #plt.close('all')
-#ut.clear_var()
 #ut.clear_console()
+#ut.clear_var()
+
 
 # Analysis
-img_file = '/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/data/airydisk-rings.jpg'
+img_file = os.getcwd()[0:-6]+ '/data/airydisk-rings.jpg'
 ffimage = tl.FarFieldGaussImage(img_file)
 centroid = ffimage.centroid1()
 if round(centroid[0])==58 and round(centroid[1])==69:

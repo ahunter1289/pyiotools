@@ -17,7 +17,7 @@ from pyiotools.imp import *
 
 # Clean workspace
 plt.close('all')
-ut.clear_var()
 ut.clear_console()
+ut.clear_var()
 
 # Analysis

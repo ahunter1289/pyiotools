@@ -1,21 +1,7 @@
 # pyiotools
 # Author: Andy Hunter
 
-import os
-import sys
-import matplotlib.pyplot as plt
-import numpy as np
-import csv
-import pandas as pd
-import h5py
-import scipy
-import math
-import tkinter as tk
-from tkinter import filedialog
-from PIL import Image
-from IPython import get_ipython
-import re
-import datetime
+from pyiotools.imp import *
     
 def data_by_row_name(data,head_search_val,**kwargs):
     # Pass the function a matrix nxm list where the first column is the
@@ -46,13 +32,15 @@ def data_by_row_name(data,head_search_val,**kwargs):
     for i in range(len(head_search_val)):
         found=0
         for k in range(len(data)):
+            if k==len(data) and found==0:
+                #raise Exception('Could not find: ' + head_search_val[i])
+                warnings.warn('Could not find: ' + head_search_val[i])
+                head_results.append(['header not found'])
             if len(data[k])<2:
                 continue
             if head_search_val[i]==data[k][0]:
                 head_results.append(data[k][1:return_cols+1])
-                found=1
-            if k==len(data)-1 and found==0:
-                raise Exception('Could not find: ' + head_search_val[i])
+                found=1  
                 
                 
     return head_results

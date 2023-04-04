@@ -10,6 +10,7 @@ import csv
 import pandas as pd
 import h5py
 import scipy
+import scipy.interpolate
 import math
 import tkinter as tk
 from tkinter import filedialog

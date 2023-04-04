@@ -17,16 +17,16 @@ from pyiotools.imp import *
 
 # Clean workspace
 #plt.close('all')
-#ut.clear_var()
 #ut.clear_console()
+#ut.clear_var()
 
 # Analysis
 [dirslist, fileslist, symlinklist] = tl.scan_tree(pyiotools_dir)
 
-test1 = '/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/docs'
-test2 = '/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/pyiotools'
-test3 = '/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/environment.yml'
-test4 = '/Users/andrewhunter/offlinedocs/swdev/pyiotoolsproject/tests/run_test_template.py'
+test1 = os.getcwd()[0:-6]+ '/docs'
+test2 = os.getcwd()[0:-6]+ '/pyiotools'
+test3 = os.getcwd()[0:-6]+ '/environment.yml'
+test4 = os.getcwd()[0:-6]+ '/tests/run_test_template.py'
 
 if test1 in dirslist and test2 in dirslist:
     print('scan tree test passed')
