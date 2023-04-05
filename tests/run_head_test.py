@@ -32,7 +32,7 @@ data2 = tl.import_csv(os.getcwd()[0:-6]+ '/data/csvtest_2.csv')
 search_val2 = np.array(['header4'])
 col = tl.data_by_col_name(data2,search_val2,return_rows=3)
 
-if len(last_row[0])==2 and last_row[0][1]=='14' and first_row[0][1]=='2' and col[0][2]=='12':
+if len(last_row[0])==2 and last_row[0][1]=='14' and first_row[0][1]=='2' and col[0][2]=='12' and len(last_row)==2:
     print('head test passed')
 else:
     raise Exception('head test failed')

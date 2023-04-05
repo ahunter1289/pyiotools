@@ -32,16 +32,13 @@ def data_by_row_name(data,head_search_val,**kwargs):
     for i in range(len(head_search_val)):
         found=0
         for k in range(len(data)):
-            if k==len(data) and found==0:
-                #raise Exception('Could not find: ' + head_search_val[i])
-                warnings.warn('Could not find: ' + head_search_val[i])
-                head_results.append(['header not found'])
-            if len(data[k])<2:
-                continue
             if head_search_val[i]==data[k][0]:
                 head_results.append(data[k][1:return_cols+1])
                 found=1  
-                
+            if k==len(data)-1 and found==0:
+                #raise Exception('Could not find: ' + head_search_val[i])
+                warnings.warn('Could not find: ' + head_search_val[i])
+                head_results.append(['header not found'])
                 
     return head_results
     
