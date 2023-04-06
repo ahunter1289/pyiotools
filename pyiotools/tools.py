@@ -12,16 +12,30 @@ def data_by_row_name(data,head_search_val,**kwargs):
     # return. If you dont pass this argument it returns all data columns
     # notes: matrix must be square or rectangular
     
+    # Find the dimensions of data
+    num_rows = len(data)
+    min_row_len = min([len(i) for i in data])
+    max_row_len = max([len(i) for i in data])
+    if min_row_len<2:
+        print('Some rows in your data have no data or only a header. For rows that only have a header, an empty list will be returned if there is a header match')
+    if 'return_cols' in kwargs.keys() and kwargs['return_cols']>min_row_len-1:
+        print("The number of columns requested is less than the number of columns in the data in some places, in this case the max # of columns will be returned")
+    if min_row_len != max_row_len:
+        print('Non-square matrix')
+    
     if len(kwargs)==0:
-        return_cols=len(data[0])-1
+        return_cols_set = 'set me' # this will be set later
     elif ('return_cols' in kwargs.keys() and
         type(kwargs['return_cols'])==int and
-        kwargs['return_cols']<=len(data[0])-1 and
+        kwargs['return_cols']<=max_row_len-1 and
         kwargs['return_cols']>0):
-            
+        return_cols_set = 'no'
         return_cols = kwargs['return_cols']
-    else:
-        raise Exception('Argument must be integer less than equal to the number of columns minus 1') 
+    
+    elif 'return_cols' in kwargs.keys():
+        raise Exception('Argument must be integer greater than or equal to the minimum number of columns in the data') 
+    else: 
+        raise Exception('Issue with data_by_row_name function, please fix me')
     
     # Check input types
     if type(head_search_val)!=list and type(head_search_val)!=type(np.array([])):
@@ -32,6 +46,9 @@ def data_by_row_name(data,head_search_val,**kwargs):
     for i in range(len(head_search_val)):
         found=0
         for k in range(len(data)):
+            if return_cols_set == 'set me':
+                return_cols = len(data[k])
+            
             if k==len(data)-1 and found==0:
                 #raise Exception('Could not find: ' + head_search_val[i])
                 warnings.warn('Could not find: ' + head_search_val[i])
