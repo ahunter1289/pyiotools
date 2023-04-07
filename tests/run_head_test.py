@@ -22,7 +22,7 @@ from pyiotools.imp import *
 
 # Analysis
 
-data = tl.import_csv(os.getcwd()[0:-6]+ '/data/csvtest_3.csv')
+data = tl.import_csv(os.path.join(os.getcwd()[0:-6], 'data','csvtest_3.csv'))
 search_val = np.array(['header1'])
 first_row = tl.data_by_row_name(data,search_val)
 search_val = ['header5']
@@ -30,7 +30,7 @@ last_row = tl.data_by_row_name(data,search_val,return_cols=2)
 wrong_head = ['wrong head']
 failed_search = tl.data_by_row_name(data,wrong_head,return_cols=2)
 
-data2 = tl.import_csv(os.getcwd()[0:-6]+ '/data/csvtest_2.csv')
+data2 = tl.import_csv(os.path.join(os.getcwd()[0:-6], 'data','csvtest_2.csv'))
 search_val2 = np.array(['header4'])
 col = tl.data_by_col_name(data2,search_val2,return_rows=3)
 

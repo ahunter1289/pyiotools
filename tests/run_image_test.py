@@ -21,10 +21,10 @@ from pyiotools.imp import *
 #ut.clear_var()
 
 # Analysis
-img_file = os.getcwd()[0:-6]+ '/data/airydisk-rings.jpg'
+img_file = os.path.join(os.getcwd()[0:-6], 'data','airydisk-rings.jpg')
 tl.plot_image(img_file)
-tl.plot_image(os.getcwd()[0:-6]+ '/data/file_example_TIFF_1MB.tiff')
-tl.plot_image(os.getcwd()[0:-6]+ '/data/2Selected-image-of-laser-beam-profile-for-test-example.png')
+tl.plot_image(os.path.join(os.getcwd()[0:-6], 'data','file_example_TIFF_1MB.tiff'))
+tl.plot_image(os.path.join(os.getcwd()[0:-6], 'data','2Selected-image-of-laser-beam-profile-for-test-example.png'))
 
 print('image test passed')
 

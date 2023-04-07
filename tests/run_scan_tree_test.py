@@ -23,10 +23,10 @@ from pyiotools.imp import *
 # Analysis
 [dirslist, fileslist, symlinklist] = tl.scan_tree(pyiotools_dir)
 
-test1 = os.getcwd()[0:-6]+ '/docs'
-test2 = os.getcwd()[0:-6]+ '/pyiotools'
-test3 = os.getcwd()[0:-6]+ '/environment.yml'
-test4 = os.getcwd()[0:-6]+ '/tests/run_test_template.py'
+test1 = os.path.join(os.getcwd()[0:-6], 'docs')
+test2 = os.path.join(os.getcwd()[0:-6], 'pyiotools')
+test3 = os.path.join(os.getcwd()[0:-6], 'environment.yml')
+test4 = os.path.join(os.getcwd()[0:-6], 'tests','run_test_template.py')
 
 if test1 in dirslist and test2 in dirslist:
     print('scan tree test passed')
